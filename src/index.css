@@ -1,0 +1,595 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+  }
+}
+
+.gradient-bg {
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(76, 29, 149, 0.5) 0%,
+    rgba(124, 58, 237, 0.2) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+}
+
+.nav-blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.skill-chart {
+  width: 300px;
+  height: 300px;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.floating-shapes::before,
+.floating-shapes::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.1);
+  animation: float 10s infinite;
+}
+
+.floating-shapes::after {
+  width: 200px;
+  height: 200px;
+  background: rgba(76, 29, 149, 0.1);
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(100px, 50px) rotate(90deg); }
+  50% { transform: translate(0, 100px) rotate(180deg); }
+  75% { transform: translate(-100px, 50px) rotate(270deg); }
+}
+
+.glass-card {
+  @apply bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .glass-card {
+    @apply active:scale-[0.98] transition-transform;
+  }
+}
+
+.poap-card {
+  transition: all 0.5s ease-in-out;
+}
+
+.poap-card:hover {
+  transform: scale(1.05);
+}
+
+.poap-content {
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-button .arrow {
+  transition: transform 0.3s ease-in-out;
+}
+
+.contact-button:hover .arrow {
+  transform: translateX(100%);
+}
+
+/* Button feedback animations */
+@keyframes buttonPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+.button-feedback {
+  animation: buttonPulse 0.3s ease-in-out;
+}
+
+/* MetaLab-style expanding animation */
+@keyframes expand {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.expand-animation {
+  animation: expand 0.8s cubic-bezier(0.25, 0.1, 0.25, 1.0) forwards;
+}
+
+.stagger-item {
+  opacity: 0;
+}
+
+.stagger-animation {
+  animation: fadeUp 0.5s ease-out forwards;
+  animation-fill-mode: both;
+}
+
+.stagger-delay-1 { animation-delay: 0.1s; }
+.stagger-delay-2 { animation-delay: 0.2s; }
+.stagger-delay-3 { animation-delay: 0.3s; }
+.stagger-delay-4 { animation-delay: 0.4s; }
+.stagger-delay-5 { animation-delay: 0.5s; }
+
+/* 3D background styles */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.content-overlay {
+  position: relative;
+  z-index: 10;
+}
+
+/* Glossy effect for cards */
+.glossy-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glossy-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 25%,
+    transparent 50%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+/* Enhanced 3D shape deformation animation */
+@keyframes deform {
+  0% { 
+    transform: scale3d(1, 1, 1); 
+  }
+  25% { 
+    transform: scale3d(1.35, 0.65, 1); 
+  }
+  50% { 
+    transform: scale3d(1, 1, 1); 
+  }
+  75% { 
+    transform: scale3d(0.65, 1.35, 1); 
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.deform-animation {
+  animation: deform 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Opposite deformation animation */
+@keyframes deform-opposite {
+  0% { 
+    transform: scale3d(1, 1, 1); 
+  }
+  25% { 
+    transform: scale3d(0.65, 1.35, 1); 
+  }
+  50% { 
+    transform: scale3d(1, 1, 1); 
+  }
+  75% { 
+    transform: scale3d(1.35, 0.65, 1); 
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.deform-animation-opposite {
+  animation: deform-opposite 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Path trajectory visualization (for debugging) */
+.path-visualization {
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 1px;
+  fill: none;
+}
+
+/* Complex movement animations */
+@keyframes complexMove {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  25% { transform: translate3d(50px, 30px, 20px) rotate(90deg); }
+  50% { transform: translate3d(0, 60px, -20px) rotate(180deg); }
+  75% { transform: translate3d(-50px, 30px, 20px) rotate(270deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(360deg); }
+}
+
+.complex-move {
+  animation: complexMove 20s ease-in-out infinite;
+}
+
+/* Navbar styles */
+.nav-item {
+  @apply relative px-3 py-2 text-sm font-medium transition-colors;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: theme('colors.purple.500');
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  width: 100%;
+}
+
+.nav-item.active {
+  @apply text-white;
+}
+
+.nav-item:not(.active) {
+  @apply text-gray-300 hover:text-white;
+}
+
+/* Typewriter animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 0.8s step-end infinite;
+}
+
+/* About page animations */
+.about-feature-card {
+  transition: all 0.3s ease-in-out;
+}
+
+.about-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(124 , 58, 237, 0.3);
+}
+
+.testimonial-card {
+  transition: all 0.5s ease-in-out;
+}
+
+.testimonial-card.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.testimonial-card:not(.active) {
+  transform: scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Photo gallery animations */
+.gallery-photo {
+  transition: all 0.5s ease-in-out;
+}
+
+.gallery-photo:hover {
+  transform: scale(1.02);
+}
+
+/* Lightbox animations */
+.lightbox-overlay {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Particle animations */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.2);
+  pointer-events: none;
+}
+
+.particle-1 {
+  width: 100px;
+  height: 100px;
+  filter: blur(30px);
+  animation: float-particle 15s ease-in-out infinite;
+}
+
+.particle-2 {
+  width: 150px;
+  height: 150px;
+  filter: blur(40px);
+  animation: float-particle 20s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+.particle-3 {
+  width: 80px;
+  height: 80px;
+  filter: blur(20px);
+  animation: float-particle 12s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(100px, 50px); }
+  50% { transform: translate(50px, 100px); }
+  75% { transform: translate(-50px, 50px); }
+}
+
+/* Hide scrollbar for testimonial carousel */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Horizontal testimonial carousel */
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.animate-scroll {
+  animation: scrollLeft 30s linear infinite;
+}
+
+.testimonial-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-carousel::before,
+.testimonial-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.testimonial-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.testimonial-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+/* Infinite scrolling animation */
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% / 2));
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 60s linear infinite;
+}
+
+/* Login button animation - Modal.com style */
+.login-button-expand {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.login-button-expand:hover {
+  padding-right: 2.5rem;
+}
+
+.login-button-icon {
+  position: absolute;
+  right: 1rem;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+.login-button-expand:hover .login-button-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* MetaLab-style intro animation */
+.intro-animation-container {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.intro-bar {
+  position: absolute;
+  height: 100vh;
+  background-color: #000;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-bar-initial {
+  width: 0;
+}
+
+.intro-bar-visible {
+  width: 4vw;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-bar-expanded {
+  width: 100vw;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-logo {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.intro-logo-visible {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-background {
+  position: absolute;
+  inset: 0;
+  background-color: white;
+}
+
+.intro-background-fade {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Gradient Blob Animation */
+.gradient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.6;
+  mix-blend-mode: lighten;
+  animation: blob-float 20s ease-in-out infinite;
+}
+
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(5%, 10%) scale(1.1) rotate(5deg);
+  }
+  50% {
+    transform: translate(10%, -5%) scale(0.9) rotate(10deg);
+  }
+  75% {
+    transform: translate(-10%, 5%) scale(1.05) rotate(-5deg);
+  }
+}
+
+/* Blob deformation animation */
+@keyframes blob-deform {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
+  }
+  75% {
+    border-radius: 60% 40% 60% 30% / 70% 30% 50% 60%;
+  }
+}
+
+.blob-deform {
+  animation: blob-deform 20s ease-in-out infinite;
+}
+
+/* Different animation timing for each blob */
+.blob-1 {
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+
+.blob-2 {
+  animation-duration: 30s;
+  animation-delay: -2s;
+}
+
+.blob-3 {
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+
+.blob-4 {
+  animation-duration: 28s;
+  animation-delay: -15s;
+}
